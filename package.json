@@ -1,0 +1,21 @@
+{
+  "name": "backend_lecture_8",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node --watch main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghuchumeliandria/Backend_Lecture_8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghuchumeliandria/Backend_Lecture_8/issues"
+  },
+  "homepage": "https://github.com/ghuchumeliandria/Backend_Lecture_8#readme",
+  "description": ""
+}
