@@ -3,6 +3,7 @@ const url = require("url");
 const queeryString = require("querystring");
 const fs = require("fs/promises");
 const readFileAndParse = require("./products");
+const { parse, resolve } = require("path");
 
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url);
@@ -125,6 +126,25 @@ const server = http.createServer(async (req, res) => {
 
       res.end(JSON.stringify(products[index]));
     });
+  }
+
+  if (parsedUrl.pathname.startsWith("/time/") && req.method === "GET") {
+    const city = parsedUrl.pathname.split("/")[2];
+
+    const data = await fetch(
+      `https://www.icalendar37.net/gadgets/timeInTheCity/?q=${city}`
+    );
+    const response = await data.json();
+    if (!response.city) {
+      res.writeHead(404, {
+        "content-type": "application/json",
+      });
+      return res.end("city not found");
+    }
+    res.writeHead(200, {
+      "content-type": "application/json",
+    });
+    res.end(JSON.stringify(response.time));
   }
 
   if (parsedUrl.pathname === "/" && req.method === "GET") {
